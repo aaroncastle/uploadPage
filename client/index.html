@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="icon" href="./image/favicon.ico">
+	<link rel="stylesheet" href="./css/index.css">
+	<title>文件上传</title>
+</head>
+<body>
+<div class="upload">
+	<p>
+		<input type="file" name="image" multiple >
+	</p>
+	<p>
+		<input type="file" name="video" multiple >
+	</p>
+	<p>
+		<button>上传</button>
+	</p>
+</div>
+<div class="show">
+	<div class="imgWrapper"></div>
+	<div class="videoWrapper"></div>
+</div>
+<script>
+	const button = document.querySelector('button');
+	const show = document.querySelector('.show');
+	function upload (){
+		const img = document.querySelector('[name=image]');
+		const video = document.querySelector('[name=video]');
+		const formulate = new FormData();
+		if(img.files.length > 0){
+			for (const file of img.files) {
+				formulate.append('image',file,file.name);
+			}
+		}
+		if(video.files.length > 0){
+			for (const file of video.files) {
+				formulate.append('video',file,file.name);
+			}
+		}
+		fetch('http://192.168.123.101/api/upload',{
+			method: 'POST',
+			body: formulate
+		}).then(res => res.json()).then(res => {
+		return 	Object.keys(res.data).forEach(value => {
+			res['data'][value].forEach( src => {
+				const type = document.createElement(value === 'image' ? 'img' : value);
+				if(value === 'video'){
+					type.src = src;
+					type.controls = 'controls';
+					type.preload = 'auto';
+				}
+				type.src = src;
+				show.appendChild(type)
+				})
+			})
+		})
+	}
+	button.onclick = upload;
+</script>
+</body>
+</html>
