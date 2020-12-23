@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage})
  router.post('/',upload.fields([
+     {name:'file',maxCount: 30},
      {name:'image',maxCount: 30},
      {name: 'video',maxCount: 20},
  ]),(req, res, next) => {

@@ -1,15 +1,26 @@
 :root, body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    background: #ccc;
 }
 .upload {
     position: fixed;
     right: 0;
-    background: rgba(0,0,0,.01);
+    background: rgba(0,0,0,.1);
     color: #eee;
 }
 img, video {
     width: 100%
+}
+.show {
+    margin: 5rem auto;
+    width: 80%;
+}
+button {
+    padding: 0 1rem;
+    border-radius: 1rem;
+    background: cornflowerblue;
+    color: #fff;
+    outline: none;
+    border: 1px solid #424242;
 }

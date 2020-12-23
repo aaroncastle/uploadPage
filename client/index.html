@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link rel="icon" href="./image/favicon.ico">
 	<link rel="stylesheet" href="./css/index.css">
-	<title>uploadPage</title>
+	<title>文件上传</title>
 </head>
 <body>
 <div class="upload">
 	<p>
-		<input type="file" name="image" multiple>
+		<input type="file" name="image" multiple >
 	</p>
 	<p>
-		<input type="file" name="video" multiple>
+		<input type="file" name="video" multiple >
 	</p>
 	<p>
-		<button>upload</button>
+		<button>上传</button>
 	</p>
 </div>
 <div class="show">
@@ -41,7 +41,7 @@
 				formulate.append('video',file,file.name);
 			}
 		}
-		fetch('http://192.168.123.165/api/upload',{
+		fetch('http://192.168.123.101/api/upload',{
 			method: 'POST',
 			body: formulate
 		}).then(res => res.json()).then(res => {
@@ -54,7 +54,6 @@
 					type.preload = 'auto';
 				}
 				type.src = src;
-				// type.width = window.innerWidth;
 				show.appendChild(type)
 				})
 			})
